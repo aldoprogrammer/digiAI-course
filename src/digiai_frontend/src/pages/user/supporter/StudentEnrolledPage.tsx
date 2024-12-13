@@ -48,7 +48,7 @@ const StudentEnrolledPage = () => {
         {isLoading ? (
           <span className="text-lg">Loading...</span>
         ) : supported.length === 0 ? (
-          <span className="text-lg">You haven't given any support yet</span>
+          <span className="text-lg">You haven't given any students pay your courses yet</span>
         ) : (
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4">
             {supported.map((support) => (

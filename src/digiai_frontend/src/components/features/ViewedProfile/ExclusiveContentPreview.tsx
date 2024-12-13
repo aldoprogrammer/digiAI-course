@@ -47,9 +47,9 @@ const ExclusiveContentPreview = ({
 
   const handleContentClick = () => {
     if (tier === 'FREE' || isUnlocked) {
-      navigate(`/creator/content/${contentId}`);
+      navigate(`/courses/content/${contentId}`);
     } else {
-      navigate(`/creator/${creator?.username}`);
+      navigate(`/courses/${creator?.username}`);
     }
   };
 

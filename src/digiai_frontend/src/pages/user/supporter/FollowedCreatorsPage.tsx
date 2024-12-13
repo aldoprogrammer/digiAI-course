@@ -53,7 +53,7 @@ const FollowedCreatorsPage = () => {
         ) : (
           <div className="flex flex-wrap gap-5">
             {creators.map((creator) => (
-              <Link key={creator.username} to={`/creator/${creator.username}`}>
+              <Link key={creator.username} to={`/courses/${creator.username}`}>
                 <div
                   key={creator.username}
                   className="flex w-full cursor-pointer gap-2 rounded-md border p-3 px-4 font-medium text-subtext hover:bg-mainAccent/30 md:w-fit"

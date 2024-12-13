@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronDown, XIcon } from 'lucide-react';
 
 import Button from '@/components/ui/Button/Button';
-import CustomDropdown from '@/components/ui/Dropdown/CustomDropdown';
 import CustomFileInput from '@/components/ui/Input/CustomFIleInput';
 import { CustomInput } from '@/components/ui/Input/CustomInput';
 import { CustomTextarea } from '@/components/ui/Input/CustomTextarea';
@@ -40,7 +39,7 @@ const CreatePostForm = () => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [contentTier, setContentTier] = useState<any>('');
+  const [contentTier, setContentTier] = useState<any>(''); // This holds the selected tier
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
@@ -110,7 +109,7 @@ const CreatePostForm = () => {
         if ('ok' in result) {
           // Reset form and navigate to content page
           resetForm();
-          navigate(`/creator/content/${result.ok.id}`);
+          navigate(`/courses/content/${result.ok.id}`);
         } else {
           console.error('Error creating post', result.err);
           setFormErrors([result.err.toString()]);
@@ -128,7 +127,7 @@ const CreatePostForm = () => {
   const resetForm = () => {
     setTitle('');
     setDescription('');
-    setContentTier('');
+    setContentTier(''); // Reset the content tier
     resetThumbnailUpload();
     resetUpload();
     setFormErrors([]);
@@ -151,20 +150,23 @@ const CreatePostForm = () => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
+      
+      {/* Tier Selection using buttons */}
       <p className="mb-2 mt-2 font-semibold text-subtext md:mt-4">Tier Level</p>
-      <CustomDropdown
-        triggerContent={
-          <div className="flex w-full items-center justify-between rounded-lg border px-4 py-3 text-left font-medium text-subtext">
-            {contentTier?.label || (
-              <span className="text-caption">Select Tier</span>
-            )}
-            <ChevronDown />
-          </div>
-        }
-        options={ContentTierOptions}
-        onItemClick={(item) => setContentTier(item)}
-        className="w-full"
-      />
+      <div className="flex space-x-3">
+        {ContentTierOptions.map((option) => (
+          <Button
+            key={option.value} 
+            variant={contentTier?.value === option.value ? 'main' : 'secondary'}
+            size="default"
+            onClick={() => setContentTier(option)}  
+            className="px-4 py-2"
+          >
+            {option.label}
+          </Button>
+        ))}
+      </div>
+
       {/* Thumbnail Upload */}
       <div className="mt-4">
         <label className="mb-2 block font-semibold text-subtext">
@@ -235,8 +237,8 @@ const CreatePostForm = () => {
           className="mb-3 mt-5 w-full md:w-[300px]"
         >
           {loading || uploading || isThumbnailUploading
-            ? 'Uploading...'
-            : 'Post Content'}
+            ? 'Creating..'
+            : 'Create Course'}
         </Button>
       </div>
     </div>

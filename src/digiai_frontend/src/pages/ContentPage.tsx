@@ -95,7 +95,7 @@ const ContentPage = () => {
 
           <div className="flex items-center justify-between gap-3">
             <Link
-              to={`/creator/${creator.username}`}
+              to={`/courses/${creator.username}`}
               className="flex items-center gap-x-3"
             >
               <img

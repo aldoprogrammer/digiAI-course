@@ -7,12 +7,12 @@ import useUser from './hooks/useUser';
 import ContentPage from './pages/ContentPage';
 import ExplorePage from './pages/ExplorePage';
 import LandingPage from './pages/LandingPage';
-import CreatePostPage from './pages/user/creator/CreatePostPage';
-import CreatorStudioPage from './pages/user/creator/CreatorStudioPage';
-import MyFollowersPage from './pages/user/creator/MyFollowersPage';
-import MyReferrals from './pages/user/creator/MyReferralsPage';
-import MySupporterPage from './pages/user/creator/MySupporterPage';
-import WalletPage from './pages/user/creator/WalletPage';
+import CreatePostPage from './pages/user/courses/CreatePostPage';
+import CreatorStudioPage from './pages/user/courses/CreatorStudioPage';
+import MyFollowersPage from './pages/user/courses/MyFollowersPage';
+import MyReferrals from './pages/user/courses/MyReferralsPage';
+import MySupporterPage from './pages/user/courses/MySupporterPage';
+import WalletPage from './pages/user/courses/WalletPage';
 import ProfilePage from './pages/user/ProfilePage';
 import DiscoverPage from './pages/user/supporter/DiscoverPage';
 import FollowedCreatorsPage from './pages/user/supporter/FollowedCreatorsPage';
@@ -59,9 +59,9 @@ function App() {
     <Routes>
       {/* Public Routes */}
       <Route path="/" element={<LandingPage />} />
-      <Route path="/creator" element={<ExplorePage />} />
-      <Route path="/creator/:username" element={<ViewedProfilePage />} />
-      <Route path="/creator/content/:contentId" element={<ContentPage />} />
+      <Route path="/courses" element={<ExplorePage />} />
+      <Route path="/courses/:username" element={<ViewedProfilePage />} />
+      <Route path="/courses/content/:contentId" element={<ContentPage />} />
 
       {/* Protected Routes = Authenticated */}
       <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
@@ -77,11 +77,11 @@ function App() {
         {/* Creator Dashboard */}
         <Route path="/dashboard" element={<ProfilePage />} />
         <Route
-          path="/dashboard/creator-studio"
+          path="/dashboard/courses-studio"
           element={<CreatorStudioPage />}
         />
         <Route
-          path="/dashboard/creator-studio/post"
+          path="/dashboard/courses-studio/post"
           element={<CreatePostPage />}
         />
         <Route path="/dashboard/wallet" element={<WalletPage />} />

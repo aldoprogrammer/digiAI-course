@@ -29,7 +29,7 @@ const Navbar = () => {
               </li>
             )}
             <li className="hover:text-black transition-colors">
-              <Link to="/creator">Finding A Courses</Link>
+              <Link to="/courses">Finding A Courses</Link>
             </li>
             <li className="hover:text-black transition-colors">
               <Link to="/#">Become An Instructor</Link>

@@ -6,7 +6,7 @@ const Footer = () => {
       title: 'Quick Links',
       links: [
         { name: 'About Us', to: '#' },
-        { name: 'Explore Courses', to: '/creator' },
+        { name: 'Explore Courses', to: '/courses' },
         { name: 'Trending Courses', to: '/dashboard/discover' },
       ],
     },

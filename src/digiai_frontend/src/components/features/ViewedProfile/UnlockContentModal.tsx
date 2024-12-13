@@ -72,7 +72,7 @@ const UnlockContentModal: React.FC<UnlockContentModalProps> = ({
           );
 
           if ('ok' in updateBalanceResult) {
-            navigate(`/creator/content/${contentId}`);
+            navigate(`/courses/content/${contentId}`);
             return;
           } else {
             throw new Error(updateBalanceResult.err);

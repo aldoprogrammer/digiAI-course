@@ -14,7 +14,7 @@ const DashboardMenu = () => {
   const [history, setHistory] = useState(localStorage.getItem('lastPath') || pathname);
 
   useEffect(() => {
-    if (pathname && pathname !== '/dashboard/creator-studio/post') {
+    if (pathname && pathname !== '/dashboard/courses-studio/post') {
       setHistory(pathname);
       localStorage.setItem('lastPath', pathname);
     }
@@ -32,7 +32,7 @@ const DashboardMenu = () => {
                 key={itemIndex}
                 to={item.to ?? '#'}
                 className={cn(
-                  'flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-100 transition-all duration-200',
+                  'flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 bg-graydark dark:bg-meta-4',
                   item.to === history &&
                     [
                       'bg-blue-100 text-blue-800',

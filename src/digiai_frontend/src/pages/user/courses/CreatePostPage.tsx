@@ -7,7 +7,7 @@ const CreatePostPage = () => {
   return (
     <LayoutDashboard title="Create Post" className="w-full">
       <h1 className="text-2xl font-semibold text-title lg:text-3xl">
-        Create Post
+        Create a New Course
       </h1>
       <CreatePostForm />
     </LayoutDashboard>

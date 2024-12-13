@@ -31,7 +31,7 @@ const CourseManagement = () => {
         <h1 className="text-2xl font-semibold text-title lg:text-3xl">
           Courses Management
         </h1>
-        <Link to={'/dashboard/creator-studio/post'}>
+        <Link to={'/dashboard/courses-studio/post'}>
           <Button
             variant="secondary"
             className="w-fit"
@@ -58,7 +58,7 @@ const CourseManagement = () => {
         ) : (
           <div className="flex flex-wrap gap-5">
             {contents.map((content) => (
-              <Link key={content.id} to={`/creator/content/${content.id}`}>
+              <Link key={content.id} to={`/courses/content/${content.id}`}>
                 <ContentPreview
                   title={content.title}
                   description={content.description}

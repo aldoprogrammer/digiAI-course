@@ -33,7 +33,7 @@ export const menuSections = [
       { label: 'Profile', to: '/dashboard', icon: <CircleUserRoundIcon /> },
       {
         label: 'Make A Course',
-        to: '/dashboard/creator-studio',
+        to: '/dashboard/courses-studio',
         icon: <PaletteIcon />,
       },
       { label: 'Wallet', to: '/dashboard/wallet', icon: <WalletIcon /> },
@@ -47,7 +47,7 @@ export const menuSections = [
       //   to: '/dashboard/purchased-content',
       //   icon: <ShoppingBagIcon />,
       // },
-      { label: 'Find A Course', to: '/creator', icon: <EarthIcon /> },
+      { label: 'Find A Course', to: '/courses', icon: <EarthIcon /> },
       { label: 'Exlporing Trending', to: '/dashboard/discover', icon: <CompassIcon /> },
     ],
     activeClassName: 'hover:bg-secondaryAccent',

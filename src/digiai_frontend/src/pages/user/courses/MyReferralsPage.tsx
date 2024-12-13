@@ -38,7 +38,7 @@ const MyReferrals = () => {
   }, [actor, referrals.length]);
 
   const handleCopy = () => {
-    const referralLink = `${window.location.origin}/creator/${user?.username}?referral=${user?.referralCode}`;
+    const referralLink = `${window.location.origin}/courses/${user?.username}?referral=${user?.referralCode}`;
     navigator.clipboard.writeText(referralLink).then(() => {
       alert('Referral link copied to clipboard!');
     });
@@ -62,7 +62,7 @@ const MyReferrals = () => {
           <p className="mr-5 text-lg font-semibold">Your Referral Link</p>
           <div className="space-y-2">
             <div className="w-full rounded-lg border bg-bg p-3 pr-4 font-medium">
-              {`${window.location.origin}/creator/${user?.username}?referral=${user?.referralCode}`}
+              {`${window.location.origin}/courses/${user?.username}?referral=${user?.referralCode}`}
             </div>
             <Button
               variant="third"

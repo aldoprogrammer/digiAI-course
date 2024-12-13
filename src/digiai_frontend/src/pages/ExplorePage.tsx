@@ -64,7 +64,7 @@ const ExplorePage = () => {
       <div className="mt-6 grid gap-10 text-subtext md:grid-cols-2 xl:grid-cols-4">
         {filteredCreators.length > 0 ? (
           filteredCreators.map((creator) => (
-            <Link to={`/creator/${creator.username}`} key={creator.username}>
+            <Link to={`/courses/${creator.username}`} key={creator.username}>
               <div className="relative min-h-[250px] w-full cursor-pointer rounded-lg border bg-mainAccent/60 shadow-custom hover:shadow-hover">
                 <img
                   src={creator.bannerPic[0] ?? '/images/banner-default.svg'}
