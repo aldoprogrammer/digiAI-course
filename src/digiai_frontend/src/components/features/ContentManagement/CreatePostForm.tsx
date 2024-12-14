@@ -150,21 +150,23 @@ const CreatePostForm = () => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      
+
       {/* Tier Selection using buttons */}
       <p className="mb-2 mt-2 font-semibold text-subtext md:mt-4">Tier Level</p>
       <div className="flex space-x-3">
         {ContentTierOptions.map((option) => (
           <Button
-            key={option.value} 
+            key={option.label} // Gunakan label sebagai key
             variant={contentTier?.value === option.value ? 'main' : 'secondary'}
             size="default"
-            onClick={() => setContentTier(option)}  
+            onClick={() => setContentTier(option)}
             className="px-4 py-2"
           >
             {option.label}
           </Button>
         ))}
+
+
       </div>
 
       {/* Thumbnail Upload */}
