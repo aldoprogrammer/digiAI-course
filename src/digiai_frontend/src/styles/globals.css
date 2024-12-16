@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+  /* Define color palette variables for light and dark modes */
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -30,6 +31,8 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
+  /* Define dark mode color palette variables */
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -56,12 +59,15 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
-@layer base {
+
+  /* Global styles */
   * {
     @apply border-border;
   }
+
+  /* You can enable global body styles here if needed */
   /* body {
-    @apply bg-bg font-quicksand text-black;
+    @apply bg-background text-foreground font-quicksand;
   } */
 }
+

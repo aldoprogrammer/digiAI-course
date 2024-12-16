@@ -60,9 +60,9 @@ const ChangeBannerProfile = () => {
     <>
       <div className="mt-2 flex flex-col gap-2 md:gap-4">
         <h3 className="font-semibold text-subtext md:text-lg">
-          Banner Picture
+          Course Header
         </h3>
-        <div className="flex h-24 w-full items-center justify-center overflow-hidden rounded-t-lg border md:h-full md:min-w-[450px] md:max-w-[900px]">
+        <div className="flex h-24 items-center justify-center overflow-hidden rounded-t-lg border md:h-full md:min-w-[450px] md:max-w-[900px]">
           <img
             src={user?.bannerPic ?? '/images/banner-default.svg'}
             alt="profile"

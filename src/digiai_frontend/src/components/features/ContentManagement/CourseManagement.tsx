@@ -46,13 +46,13 @@ const CourseManagement = () => {
         className={cn(
           'mt-3 w-full rounded-lg border border-border p-3 shadow-custom md:px-5 md:py-4',
           contents.length === 0 &&
-            'flex min-h-[200px] max-w-[600px] items-center justify-center md:min-h-[300px]',
+          'flex min-h-[200px] max-w-[600px] items-center justify-center md:min-h-[300px]',
         )}
       >
         {contents.length === 0 ? (
           <div className="mb-4 flex flex-col items-center space-y-3 text-subtext">
             <p className="text-center font-semibold md:text-lg">
-              No content yet. Start creating your first exclusive post!
+              You have not created any course yet.
             </p>
           </div>
         ) : (

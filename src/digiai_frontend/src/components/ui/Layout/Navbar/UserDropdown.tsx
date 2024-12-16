@@ -10,17 +10,15 @@ import {
 } from '@headlessui/react';
 import {
   ChevronDown,
-  CircleUserRoundIcon,
-  CompassIcon,
-  EarthIcon,
-  HeartIcon,
-  PaletteIcon,
-  ShoppingBagIcon,
-  SquareUserIcon,
-  UserRoundPlusIcon,
-  UsersIcon,
-  UsersRoundIcon,
-  WalletIcon,
+  UserIcon, // Changed icon to a more general user icon
+  EditIcon, // Changed icon to represent editing
+  WalletIcon, // Kept wallet icon
+  HeartIcon, // Kept heart icon for support-related actions
+  SearchIcon, // Replaced with search icon for "Find A Course"
+  TrendingUpIcon, // Replaced with TrendingUp for "Exploring Trending"
+  UsersIcon, // Kept as is for followers-related actions
+  ArrowRightCircleIcon, // Replaced for a more relevant icon for "My Referrals"
+  LogOutIcon, // Replaced with LogOutIcon for logout
 } from 'lucide-react';
 
 import useUser from '@/hooks/useUser';
@@ -30,65 +28,39 @@ import { useAuthManager } from '@/store/AuthProvider';
 export const menuSections = [
   {
     items: [
-      { label: 'Profile', to: '/dashboard', icon: <CircleUserRoundIcon /> },
-      {
-        label: 'Make A Course',
-        to: '/dashboard/courses-studio',
-        icon: <PaletteIcon />,
-      },
+      { label: 'Profile', to: '/dashboard', icon: <UserIcon /> },
+      { label: 'Make A Course', to: '/dashboard/courses-studio', icon: <EditIcon /> },
       { label: 'Wallet', to: '/dashboard/wallet', icon: <WalletIcon /> },
+      { label: 'Find A Course', to: '/courses', icon: <SearchIcon /> },
+      { label: 'Exploring Trending', to: '/dashboard/discover', icon: <TrendingUpIcon /> },
+      { label: 'Student Enrolled', to: '/dashboard/support-given', icon: <HeartIcon /> },
     ],
     activeClassName: 'hover:bg-mainAccent',
   },
   {
     items: [
-      // {
-      //   label: 'My Enrolled Courses',
-      //   to: '/dashboard/purchased-content',
-      //   icon: <ShoppingBagIcon />,
-      // },
-      { label: 'Find A Course', to: '/courses', icon: <EarthIcon /> },
-      { label: 'Exlporing Trending', to: '/dashboard/discover', icon: <CompassIcon /> },
+      // { label: 'Find A Course', to: '/courses', icon: <SearchIcon /> },
+      // { label: 'Exploring Trending', to: '/dashboard/discover', icon: <TrendingUpIcon /> },
     ],
     activeClassName: 'hover:bg-secondaryAccent',
   },
   {
     items: [
-      {
-        label: 'Student Enrolled',
-        to: '/dashboard/support-given',
-        icon: <HeartIcon />,
-      },
-      {
-        label: 'Following Instructors',
-        to: '/dashboard/following',
-        icon: <SquareUserIcon />,
-      },
+      // { label: 'Student Enrolled', to: '/dashboard/support-given', icon: <HeartIcon /> },
+      // { label: 'Following Instructors', to: '/dashboard/following', icon: <UsersIcon /> },
     ],
     activeClassName: 'hover:bg-thirdAccent',
   },
   {
     items: [
-      {
-        label: 'My Supporter',
-        to: '/dashboard/supporter',
-        icon: <UsersIcon />,
-      },
-      {
-        label: 'Followers List',
-        to: '/dashboard/followers',
-        icon: <UsersRoundIcon />,
-      },
-      {
-        label: 'My Referrals',
-        to: '/dashboard/referrals',
-        icon: <UserRoundPlusIcon />,
-      },
+      // { label: 'My Supporter', to: '/dashboard/supporter', icon: <UsersIcon /> },
+      // { label: 'Followers List', to: '/dashboard/followers', icon: <UsersIcon /> },
+      // { label: 'My Referrals', to: '/dashboard/referrals', icon: <ArrowRightCircleIcon /> },
     ],
     activeClassName: 'hover:bg-mainAccent',
   },
   {
-    items: [{ label: 'Logout', to: undefined, icon: undefined }],
+    items: [{ label: 'Logout', to: undefined, icon: <LogOutIcon /> }],
     activeClassName: 'hover:bg-shadow',
   },
 ];
@@ -98,7 +70,7 @@ const UserDropdown = () => {
   const { logout } = useAuthManager();
 
   return (
-    <Menu as="div" className="mt2 relative inline-block text-left">
+    <Menu as="div" className="mt-2 relative inline-block text-left">
       {/* Dropdown Button */}
       <MenuButton className={'flex items-center gap-3'}>
         <div
@@ -158,6 +130,7 @@ const UserDropdown = () => {
                         section.activeClassName,
                       )}
                     >
+                      {item.icon}
                       {item.label}
                     </div>
                   )}

@@ -59,8 +59,9 @@ const ChangeProfilePic = () => {
   return (
     <>
       <div className="flex flex-col gap-2 md:gap-4">
+        <div className='flex flex-col gap-3 mx-auto'>
         <h3 className="font-semibold text-subtext md:text-lg">
-          Profile Picture
+          User Profile Picture
         </h3>
         <div className="flex size-20 items-center justify-center overflow-hidden rounded-full border border-border md:size-32">
           <img
@@ -69,13 +70,14 @@ const ChangeProfilePic = () => {
             className="h-full w-full object-cover"
           />
         </div>
+        </div>
         <Button
-          className="w-fit"
+          className="w-full"
           shadow={false}
           size={isMobile ? 'small' : 'default'}
           onClick={() => setOpenModal(true)}
         >
-          Upload New Picture
+          Change Profile Picture
         </Button>
       </div>
       <ModalCustom

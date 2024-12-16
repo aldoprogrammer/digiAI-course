@@ -7,7 +7,7 @@ const ProfilePage = () => {
   return (
     <LayoutDashboard title={'Profile'}>
       <h1 className="text-title text-2xl font-semibold lg:text-3xl">
-        My Profile
+        Dashboard
       </h1>
       <EditProfile />
     </LayoutDashboard>

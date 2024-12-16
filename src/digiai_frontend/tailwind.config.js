@@ -33,9 +33,9 @@ export default {
       },
       colors: {
         bg: '#FFE4E1',
-        mainAccent: '#FEC2C3',
-        secondaryAccent: '#D9C3F2',
-        thirdAccent: '#C3CFF2',
+        mainAccent: '#A3D8FF',
+        secondaryAccent: '#A1C4FD',
+        thirdAccent: '#FDCB82',
         title: '#3E3D39',
         subtext: '#4E4C47',
         caption: '#7A6858',

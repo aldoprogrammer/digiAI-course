@@ -40,6 +40,7 @@ const CreatePostForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [contentTier, setContentTier] = useState<any>(''); // This holds the selected tier
+  const [youtubeLink, setYoutubeLink] = useState('');
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
@@ -63,7 +64,15 @@ const CreatePostForm = () => {
       errors.push('Thumbnail is required');
     }
 
-    if (!selectedFiles) setFormErrors(errors);
+    if (!selectedFiles) {
+      errors.push('At least one content image is required');
+    }
+
+    if (youtubeLink && !/^https:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+$/.test(youtubeLink)) {
+      errors.push('Invalid YouTube link');
+    }
+
+    setFormErrors(errors);
     return errors.length === 0;
   };
 
@@ -104,6 +113,7 @@ const CreatePostForm = () => {
           contentTier.value,
           uploadedThumbnailUrl, // Thumbnail
           uploadedContentImageUrls, // Content Images
+          // youtubeLink // YouTube Link
         );
 
         if ('ok' in result) {
@@ -128,6 +138,7 @@ const CreatePostForm = () => {
     setTitle('');
     setDescription('');
     setContentTier(''); // Reset the content tier
+    setYoutubeLink(''); // Reset YouTube link
     resetThumbnailUpload();
     resetUpload();
     setFormErrors([]);
@@ -141,6 +152,16 @@ const CreatePostForm = () => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+       {/* YouTube Link Field */}
+       <div className="mt-4">
+        <label className="mb-2 block font-semibold text-subtext">YouTube Video Link</label>
+        <CustomInput
+          type="url"
+          placeholder="Paste YouTube video link"
+          value={youtubeLink}
+          onChange={(e) => setYoutubeLink(e.target.value)}
+        />
+      </div>
       <CustomTextarea
         containerClassName="mt-2 md:mt-4"
         textareaClassName="md:min-h-[100px]"
@@ -152,11 +173,11 @@ const CreatePostForm = () => {
       />
 
       {/* Tier Selection using buttons */}
-      <p className="mb-2 mt-2 font-semibold text-subtext md:mt-4">Tier Level</p>
+      <p className="mb-2 mt-2 font-semibold text-subtext md:mt-4">Price to Enrolled</p>
       <div className="flex space-x-3">
         {ContentTierOptions.map((option) => (
           <Button
-            key={option.label} // Gunakan label sebagai key
+            key={option.label} // Use label as key
             variant={contentTier?.value === option.value ? 'main' : 'secondary'}
             size="default"
             onClick={() => setContentTier(option)}
@@ -165,15 +186,11 @@ const CreatePostForm = () => {
             {option.label}
           </Button>
         ))}
-
-
       </div>
 
       {/* Thumbnail Upload */}
       <div className="mt-4">
-        <label className="mb-2 block font-semibold text-subtext">
-          Thumbnail
-        </label>
+        <label className="mb-2 block font-semibold text-subtext">Thumbnail</label>
         <div className="space-y-5">
           <CustomFileInput
             onChange={handleThumbnailChange}
@@ -201,9 +218,7 @@ const CreatePostForm = () => {
 
       {/* Content Images Upload */}
       <div className="mt-4">
-        <label className="mb-2 block font-semibold text-subtext">
-          Content Images
-        </label>
+        <label className="mb-2 block font-semibold text-subtext">Content Images</label>
         <div className="space-y-5">
           <CustomFileInput
             onChange={handleFilesChange}
@@ -230,6 +245,8 @@ const CreatePostForm = () => {
           </div>
         </div>
       </div>
+
+     
 
       <div className="flex w-full md:justify-end">
         <Button

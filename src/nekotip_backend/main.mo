@@ -120,9 +120,10 @@ actor NekoTip {
     description : Text,
     tier : Types.ContentTier,
     thumbnail : Text,
+    youtubeLink: Text,
     contentImages : [Text],
   ) : async Result.Result<Types.Content, Text> {
-    return ContentService.postContent(contents, msg.caller, title, description, tier, thumbnail, contentImages);
+    return ContentService.postContent(contents, msg.caller, title, description, tier, thumbnail, contentImages, youtubeLink);
   };
 
   // GET ALL CONTENT PREVIEWS (Timeline/Feed/Discover)
