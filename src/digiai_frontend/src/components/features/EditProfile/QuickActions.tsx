@@ -11,7 +11,7 @@ import Button from '@/components/ui/Button/Button';
 const QuickActions = () => {
   const quickActions = [
     {
-      title: 'Post Exclusive Content',
+      title: 'Post A Course',
       to: '/dashboard/content-management',
       icon: <CircleFadingPlusIcon />,
     },

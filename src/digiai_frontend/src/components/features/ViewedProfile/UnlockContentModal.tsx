@@ -93,7 +93,7 @@ const UnlockContentModal: React.FC<UnlockContentModalProps> = ({
 
   return (
     <ModalCustom
-      title={`Unlock Exclusive Content`}
+      title={`Enrolled for This Course`}
       isOpen={isOpen}
       onClose={onClose}
       className="max-w-[600px] text-subtext"
@@ -103,7 +103,7 @@ const UnlockContentModal: React.FC<UnlockContentModalProps> = ({
         <div className="mb-4">
           <h2 className="text-lg font-semibold">{title}</h2>
           <p className="font-medium text-muted-foreground">
-            Unlock Price: <span className="text-lg">${usdAmount}</span> or{' '}
+            Course Price: <span className="text-lg">${usdAmount}</span> or{' '}
             <span className="text-lg">{icpAmount} ICP</span>
           </p>
         </div>
@@ -124,7 +124,7 @@ const UnlockContentModal: React.FC<UnlockContentModalProps> = ({
           {isLoading ? (
             'Unlocking...'
           ) : (
-            <>Pay with ICP (Balance: {parseFloat(balance).toFixed(2)} ICP)</>
+            <>Proceed with ICP (Balance: {parseFloat(balance).toFixed(2)} ICP)</>
           )}
         </Button>
       </div>

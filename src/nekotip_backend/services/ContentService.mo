@@ -18,7 +18,7 @@ module {
     tier : Types.ContentTier,
     thumbnail : Text,
     contentImages : [Text],
-    youtubeLink : Text // Make sure you are passing a valid Text URL
+    youtubeLink : Text, // Make sure you are passing a valid Text URL
   ) : Result.Result<Types.Content, Text> {
 
     // Check for anonymous caller
@@ -46,8 +46,10 @@ module {
       return #err("Maximum of 10 content images allowed");
     };
 
-    // Validate for youtubes url 
-    
+    // Validate YouTube link
+    if (youtubeLink == "" or not _isValidUrl(youtubeLink)) {
+      return #err("Invalid YouTube link URL");
+    };
 
     // Validate individual content images
     for (image in contentImages.vals()) {
@@ -62,7 +64,7 @@ module {
       id = contentId;
       creatorId = caller;
       title = title;
-      youtubeLink : youtubeLink;
+      youtubeLink = youtubeLink;
       description = description;
       tier = tier;
       thumbnail = thumbnail;

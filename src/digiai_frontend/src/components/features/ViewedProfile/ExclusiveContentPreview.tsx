@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { LockIcon, MessageSquareIcon, ThumbsUpIcon } from 'lucide-react';
+import YouTube from 'react-youtube';  // Import react-youtube component
 
 import useUser from '@/hooks/useUser';
 import { formatNSToDate } from '@/lib/utils';
@@ -14,13 +15,14 @@ import UnlockContentModal from './UnlockContentModal';
 
 interface ExclusiveContentPreviewProps {
   contentId: string;
-  title: string;
-  description: string;
-  tier: string;
-  thumbnail: string;
-  likesCount: string;
   commentsCount: string;
+  description: string;
+  likesCount: string;
+  thumbnail: string;
+  tier: string;
+  title: string;
   createdAt: bigint;
+  youtubeLink?: string;  // Add youtubeLink to props
   isUnlocked?: boolean;
   className?: string;
   creatorId?: string;
@@ -35,6 +37,7 @@ const ExclusiveContentPreview = ({
   tier,
   title,
   createdAt,
+  youtubeLink,  // Destructure youtubeLink
   isUnlocked,
   className,
   creatorId,
@@ -61,6 +64,17 @@ const ExclusiveContentPreview = ({
     }
   }, [creator, creatorId, getUserById]);
 
+  // Extract the video ID from youtubeLink
+  const getYouTubeVideoId = (url: string | undefined) => {
+    if (!url) return null;
+
+    const regExp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S+[\?&]v=|\S+\/v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regExp);
+    return match ? match[1] : null;
+  };
+
+  const videoId = getYouTubeVideoId(youtubeLink);
+
   return (
     <div
       onClick={handleContentClick}
@@ -73,7 +87,7 @@ const ExclusiveContentPreview = ({
     >
       <div className="relative">
         <img
-          src={thumbnail ?? '/images/banner-default.svg'}
+          src={youtubeLink ?? '/images/banner.png'}
           alt={title}
           className={cn('h-40 w-full rounded-t-md bg-mainAccent object-cover')}
         />
@@ -92,16 +106,16 @@ const ExclusiveContentPreview = ({
           </button>
         </div>
       </div>
+
       <div className="p-4">
         <h2 className="text-lg font-semibold text-title">{title}</h2>
         {creatorId && (
           <div className="mb-3 mt-2 flex items-center gap-2">
             <img
-              src={creator?.profilePic[0] ?? '/images/user-default.svg'}
+              src={creator?.profilePic[0] ?? 'https://cdn.discordapp.com/attachments/1314806383195197475/1319310119862931586/1.png?ex=6766278c&is=6764d60c&hm=860bb12a6262cd6f76f7b2e9d358a0f309e8eece8d5468bd40a5a03d18570087&'}
               alt="profilepic"
               className="size-16 rounded-full"
             />
-
             <div>
               <p className="font-semibold">@{creator?.username}</p>
               <p className="text-sm text-caption">
@@ -133,12 +147,12 @@ const ExclusiveContentPreview = ({
           </div>
           <p
             className={cn(
-              'bg- flex items-center rounded-lg border px-3 py-1 text-sm font-medium',
+              'flex items-center rounded-lg border px-3 py-1 text-sm font-medium',
               tier === EnumContentTier.Free
                 ? 'bg-thirdAccent'
                 : isUnlocked
-                  ? 'bg-mainAccent'
-                  : '',
+                ? 'bg-mainAccent'
+                : '',
             )}
           >
             {tier === EnumContentTier.Free

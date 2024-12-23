@@ -17,7 +17,7 @@ const Navbar = () => {
           <Link to="/">
             <img
               alt="nekotip logo"
-              src="/images/logo/nekotip-logo.svg"
+              src="https://media.discordapp.net/attachments/1314806383195197475/1319296521648472115/Blue_and_Yellow_Modern_Innovating_Online_Learning_Logo-3.png?ex=67661ae2&is=6764c962&hm=b61d401349e5a7c30bb048d47deeec8aebed84779a4341510902f1a2e4e696f8&=&format=webp&quality=lossless&width=733&height=733"
               className="h-10"
               loading="eager"
             />

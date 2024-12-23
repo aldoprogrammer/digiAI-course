@@ -57,6 +57,7 @@ const PurchasedContentPage = () => {
             {purchasedContents.map((content) => (
               <ExclusiveContentPreview
                 key={content.id}
+                youtubeLink={content.youtubeLink}
                 contentId={content.id}
                 title={content.title}
                 description={content.description}

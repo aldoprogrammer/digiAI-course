@@ -30,29 +30,27 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full border-t bg-mainAccent py-8 font-medium text-subtext">
-      <section className="flex flex-col gap-6 px-4 md:gap-14 xl:flex-row xl:justify-center xl:gap-20">
-        <div className="w-[350px]">
+    <footer className="w-full border-t bg-mainAccent  py-12 text-white font-medium text-black">
+      <section className="container mx-auto flex flex-col gap-8 px-4 md:gap-14 xl:flex-row xl:justify-between xl:gap-20">
+        <div className="flex flex-row items-center gap-4 w-full">
           <img
-            src="/images/logo/nekotip-logo.svg"
-            alt="nekotip logo"
-            className="mb-2 w-28 md:w-40"
+            src="https://media.discordapp.net/attachments/1314806383195197475/1319296521648472115/Blue_and_Yellow_Modern_Innovating_Online_Learning_Logo-3.png?ex=67661ae2&is=6764c962&hm=b61d401349e5a7c30bb048d47deeec8aebed84779a4341510902f1a2e4e696f8&=&format=webp&quality=lossless&width=733&height=733"
+            alt="DigiAI Course logo"
+            className="mb-4 w-32 sm:w-40 xl:w-44"
           />
-          <p className="max-w-[350px] font-medium">
-            Connecting fans and creators through secure blockchain technology.
+          <p className="text-lg sm:text-xl text-black font-medium leading-relaxed">
+            Transforming education with cutting-edge AI-driven courses designed for the future.
           </p>
         </div>
 
-        <div className="grid items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
           {footerLinks.map((footer) => (
-            <div key={footer.title} className="grid w-[300px] xl:justify-end">
-              <h3 className="mb-2 text-lg font-semibold text-title">
-                {footer.title}
-              </h3>
-              <ul className="space-y-1 font-medium text-caption">
+            <div key={footer.title} className="space-y-4">
+              <h3 className="text-lg font-semibold text-title">{footer.title}</h3>
+              <ul className="space-y-2">
                 {footer.links.map((item) => (
-                  <li key={item.name}>
-                    <Link to={item.to} className="hover:text-title">
+                  <li key={item.name} className="text-sm text-black">
+                    <Link to={item.to} className="hover:text-title transition duration-200 ease-in-out">
                       {item.name}
                     </Link>
                   </li>
@@ -63,7 +61,7 @@ const Footer = () => {
         </div>
       </section>
 
-      <section className="mt-8 border-t pt-8 text-center">
+      <section className="mt-12 border-t pt-8 text-center text-sm text-black">
         <p>&copy; 2024 DigiAI Course. All rights reserved.</p>
       </section>
     </footer>

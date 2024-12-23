@@ -90,7 +90,6 @@ module {
     id : Text;
     creatorId : Principal;
     title : Text;
-    youtubeLink: Text;
     description : Text;
     tier : ContentTier;
     thumbnail : Text;

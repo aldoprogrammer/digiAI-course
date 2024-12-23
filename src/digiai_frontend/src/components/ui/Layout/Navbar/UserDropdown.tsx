@@ -72,7 +72,9 @@ const UserDropdown = () => {
   return (
     <Menu as="div" className="mt-2 relative inline-block text-left">
       {/* Dropdown Button */}
+      <Link to="/dashboard">
       <MenuButton className={'flex items-center gap-3'}>
+      <Link to="/dashboard">
         <div
           className={cn(
             'flex size-12 items-center justify-center overflow-hidden rounded-full text-subtext',
@@ -80,16 +82,21 @@ const UserDropdown = () => {
           )}
         >
           <img
-            src={user?.profilePic || '/images/user-default.svg'}
+            src={user?.profilePic || 'https://cdn.discordapp.com/attachments/1314806383195197475/1319310119862931586/1.png?ex=6766278c&is=6764d60c&hm=860bb12a6262cd6f76f7b2e9d358a0f309e8eece8d5468bd40a5a03d18570087&'}
             alt="profilepic"
             className={cn(user?.profilePic && 'h-full w-full object-cover')}
           />
         </div>
+        </Link>
         <div className="flex items-center gap-1 text-subtext">
+          
+          <Link to="/dashboard">
           <div className="font-semibold">@{user?.username}</div>
-          <ChevronDown />
+          </Link>
         </div>
+        
       </MenuButton>
+      </Link>
 
       {/* Dropdown Items */}
       <Transition
@@ -101,7 +108,7 @@ const UserDropdown = () => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <MenuItems
+        {/* <MenuItems
           className={cn(
             'absolute right-0 z-50 mt-3 w-60 origin-top-right divide-y rounded-lg shadow-lg ring-1',
             'divide-[#3E3D39] border-caption bg-[#FFE4E1] ring-caption',
@@ -138,7 +145,7 @@ const UserDropdown = () => {
               ))}
             </div>
           ))}
-        </MenuItems>
+        </MenuItems> */}
       </Transition>
     </Menu>
   );

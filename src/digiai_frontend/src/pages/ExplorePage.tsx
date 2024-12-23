@@ -41,7 +41,7 @@ const ExplorePage = () => {
 
   return (
     <Layout title="Find the best courses">
-      <h1 className="text-center text-3xl font-semibold text-title md:text-5xl">
+      {/* <h1 className="text-center text-3xl font-semibold text-title md:text-5xl">
         Find the best courses to enhancing your skill
       </h1>
       <h2 className="mt-2 text-center text-sm font-medium text-subtext md:mt-4 md:text-base">
@@ -60,14 +60,14 @@ const ExplorePage = () => {
             {category}
           </button>
         ))}
-      </div>
+      </div> */}
       <div className="mt-6 grid gap-10 text-subtext md:grid-cols-2 xl:grid-cols-4">
         {filteredCreators.length > 0 ? (
           filteredCreators.map((creator) => (
             <Link to={`/courses/${creator.username}`} key={creator.username}>
               <div className="relative min-h-[250px] w-full cursor-pointer rounded-lg border bg-mainAccent/60 shadow-custom hover:shadow-hover">
                 <img
-                  src={creator.bannerPic[0] ?? '/images/banner-default.svg'}
+                  src={creator.bannerPic[0] ?? '/images/banner.png'}
                   alt="profile-banner"
                   className="h-[100px] w-full rounded-t-lg object-cover"
                 />
@@ -79,7 +79,7 @@ const ExplorePage = () => {
                 )}
 
                 <img
-                  src={creator.profilePic[0] ?? '/images/user-default.svg'}
+                  src={creator.profilePic[0] ?? 'https://cdn.discordapp.com/attachments/1314806383195197475/1319310119862931586/1.png?ex=6766278c&is=6764d60c&hm=860bb12a6262cd6f76f7b2e9d358a0f309e8eece8d5468bd40a5a03d18570087&'}
                   alt="profile-picture"
                   className="absolute bottom-[120px] left-3 size-20 rounded-full"
                 />
@@ -99,7 +99,7 @@ const ExplorePage = () => {
             </Link>
           ))
         ) : (
-          <span className="text-xl font-medium">No creators found</span>
+          <span className="text-xl font-medium">No courses found</span>
         )}
       </div>
     </Layout>

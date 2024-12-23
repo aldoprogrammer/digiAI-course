@@ -65,7 +65,7 @@ const ChangeProfilePic = () => {
         </h3>
         <div className="flex size-20 items-center justify-center overflow-hidden rounded-full border border-border md:size-32">
           <img
-            src={user?.profilePic ?? '/images/logo/nekotip.svg'}
+            src={user?.profilePic ?? 'https://cdn.discordapp.com/attachments/1314806383195197475/1319310119862931586/1.png?ex=6766278c&is=6764d60c&hm=860bb12a6262cd6f76f7b2e9d358a0f309e8eece8d5468bd40a5a03d18570087&'}
             alt="profile"
             className="h-full w-full object-cover"
           />
@@ -90,7 +90,7 @@ const ChangeProfilePic = () => {
         <div className="flex flex-col items-center gap-4 p-5">
           <div className="size-36 overflow-hidden rounded-full bg-bg">
             <img
-              src={preview || user?.profilePic || '/images/user-default.svg'}
+              src={preview || user?.profilePic || 'https://cdn.discordapp.com/attachments/1314806383195197475/1319310119862931586/1.png?ex=6766278c&is=6764d60c&hm=860bb12a6262cd6f76f7b2e9d358a0f309e8eece8d5468bd40a5a03d18570087&'}
               alt="profilepic"
               className="h-full w-full object-cover"
             />

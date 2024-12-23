@@ -127,6 +127,7 @@ const EditProfile = () => {
               {contents.map((content) => (
                 <Link key={content.id} to={`/courses/content/${content.id}`}>
                   <ContentPreview
+                    youtubeLink={content.youtubeLink}
                     title={content.title}
                     description={content.description}
                     tier={getContentTierLabel(content.tier)}

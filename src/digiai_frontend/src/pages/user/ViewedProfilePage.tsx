@@ -13,7 +13,7 @@ import { useAuthManager } from '@/store/AuthProvider';
 
 import { User } from '../../../../declarations/nekotip_backend/nekotip_backend.did';
 
-const MENU_PROFILE = ['Home', 'Exclusive Contents'];
+const MENU_PROFILE = ['Support', 'Courses', 'Projects'];
 
 const ViewedProfilePage = () => {
   const { username } = useParams();
@@ -22,7 +22,7 @@ const ViewedProfilePage = () => {
 
   const [viewedUser, setViewedUser] = useState<User | null>(null);
   const [notFound, setNotFound] = useState(false);
-  const [menu, setMenu] = useState('Home');
+  const [menu, setMenu] = useState('Support');
   const [isLoading, setIsLoading] = useState(false);
   const [loadingToggleFollow, setLoadingToggleFollow] = useState(false);
 
@@ -75,12 +75,12 @@ const ViewedProfilePage = () => {
         <div className="w-full rounded-lg border bg-white shadow-md">
           <div className="relative">
             <img
-              src={viewedUser?.bannerPic[0] || '/images/banner-default.svg'}
+              src={viewedUser?.bannerPic[0] || '/images/banner.png'}
               alt="banner"
               className="h-[225px] w-full rounded-t-lg object-cover"
             />
             <img
-              src={viewedUser?.profilePic[0] || '/images/user-default.svg'}
+              src={viewedUser?.profilePic[0] || 'https://cdn.discordapp.com/attachments/1314806383195197475/1319310119862931586/1.png?ex=6766278c&is=6764d60c&hm=860bb12a6262cd6f76f7b2e9d358a0f309e8eece8d5468bd40a5a03d18570087&'}
               alt="profile"
               className="absolute -bottom-16 left-5 w-24 h-24 rounded-full border-4 border-white shadow-lg md:w-32 md:h-32 md:-bottom-20"
             />
@@ -141,8 +141,9 @@ const ViewedProfilePage = () => {
                 ))}
               </div>
 
-              {menu === 'Home' && <ProfileHomePanel viewedUser={viewedUser} />}
-              {menu === 'Exclusive Contents' && <ExclusiveContentPanel creatorId={viewedUser.id} />}
+              {menu === 'Support' && <ProfileHomePanel viewedUser={viewedUser} />}
+              {menu === 'Courses' && <ExclusiveContentPanel creatorId={viewedUser.id} />}
+              {menu === 'Projects' && <p>This is projects / portfolio</p>}
             </section>
           </main>
         </div>

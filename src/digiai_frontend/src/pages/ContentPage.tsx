@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { ThumbsUpIcon } from 'lucide-react';
-
-import Button from '@/components/ui/Button/Button';
 import Layout from '@/components/ui/Layout/Layout';
-import useUser from '@/hooks/useUser';
-import { getContentTierName } from '@/lib/utils';
 import { useAuthManager } from '@/store/AuthProvider';
+import { getContentTierName } from '@/lib/utils';
+import { ThumbsUpIcon } from 'lucide-react';
+import Button from '@/components/ui/Button/Button';
+import useUser from '@/hooks/useUser';
 
-import {
-  Content,
-  ContentPreview,
-  User,
-} from '../../../declarations/nekotip_backend/nekotip_backend.did';
+import { Content, User } from '../../../declarations/nekotip_backend/nekotip_backend.did';
+import YouTube from 'react-youtube';
 
 const ContentPage = () => {
   const { contentId } = useParams();
@@ -21,7 +17,6 @@ const ContentPage = () => {
   const { getUserById } = useUser();
 
   const [content, setContent] = useState<Content>();
-  const [contentPreview, setContentPreview] = useState<ContentPreview | null>();
   const [creator, setCreator] = useState<User | undefined>(undefined);
   const [likesCount, setLikesCount] = useState(0);
   const [loadingLike, setLoadingLike] = useState(false);
@@ -32,7 +27,6 @@ const ContentPage = () => {
       setLoadingLike(true);
       if (actor) {
         const result = await actor.toggleLike(contentId);
-
         if ('ok' in result) {
           setLikesCount(result.ok.likes.length);
         }
@@ -53,17 +47,12 @@ const ContentPage = () => {
 
       try {
         const result = await actor?.getContentDetails(contentId);
-
         if (result && !content) {
           if ('ok' in result) {
             setContent(result.ok);
             setLikesCount(result.ok.likes.length);
           } else if ('err' in result) {
-            if (result.err[0]) {
-              setContentPreview(result.err[0]);
-            } else {
-              setErrorFetching(true);
-            }
+            setErrorFetching(true);
           }
         }
       } catch (error) {
@@ -78,7 +67,19 @@ const ContentPage = () => {
         if (result) setCreator(result);
       });
     }
-  }, [actor, content, contentId, contentPreview, creator, getUserById]);
+  }, [actor, content, contentId, creator, getUserById]);
+
+  // Extract the video ID from youtubeLink
+  const getYouTubeVideoId = (url: string | undefined) => {
+    if (!url) return null;
+
+    const regExp = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|\S+[\?&]v=|\S+\/v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regExp);
+    return match ? match[1] : null;
+  };
+
+  const videoId = getYouTubeVideoId(content?.thumbnail);
+
 
   if (content && creator) {
     return (
@@ -99,7 +100,7 @@ const ContentPage = () => {
               className="flex items-center gap-x-3"
             >
               <img
-                src={creator.profilePic[0] || '/images/user-default.svg'}
+                src={creator.profilePic[0] || 'https://cdn.discordapp.com/attachments/1314806383195197475/1319310119862931586/1.png?ex=6766278c&is=6764d60c&hm=860bb12a6262cd6f76f7b2e9d358a0f309e8eece8d5468bd40a5a03d18570087&'}
                 alt={creator.username}
                 className="size-14 rounded-full md:size-20"
               />
@@ -117,11 +118,35 @@ const ContentPage = () => {
               {likesCount} Like
             </Button>
           </div>
+          {/* Display YouTube Link with iframe */}
+          {/* {content.thumbnail && (
+            <div className="mt-6">
+              <div className="mt-3">
+                <iframe
+                  width="100%"
+                  height="400"
+                  src={`${content.thumbnail}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          )} */}
+
+          {/* If youtubeLink exists, render the YouTube component */}
+          {videoId && (
+            <div className="mt-4">
+              <YouTube videoId={videoId} opts={{ width: '100%', height: '400px' }} />
+            </div>
+          )}
 
           <p className="font-montserrat text-sm font-medium text-subtext md:text-lg">
             {content.description}
           </p>
-          <div className="flex flex-wrap gap-4">
+
+          {/* <div className="flex flex-wrap gap-4">
             {content.contentImages.map((image, index) => (
               <img
                 key={index}
@@ -130,18 +155,8 @@ const ContentPage = () => {
                 className="h-fit w-full max-w-xl"
               />
             ))}
-          </div>
+          </div> */}
         </div>
-      </Layout>
-    );
-  }
-
-  if (contentPreview) {
-    return (
-      <Layout>
-        <p className="text-2xl font-semibold text-title">
-          You dont have access to this exclusive content!
-        </p>
       </Layout>
     );
   }

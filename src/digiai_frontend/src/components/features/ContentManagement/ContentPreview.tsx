@@ -36,7 +36,7 @@ const ContentPreview = ({
     >
       {/* Thumbnail Image */}
       <img
-        src={thumbnail}
+        src={youtubeLink}
         alt={title}
         className="h-40 w-full rounded-t-lg object-cover bg-gray-200"
       />

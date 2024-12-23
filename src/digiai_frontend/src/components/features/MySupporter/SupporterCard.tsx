@@ -31,7 +31,7 @@ const SupporterCard = ({ supporter }: SupporterCardProps) => {
     <div className="break-all rounded-md border p-3 font-medium text-subtext">
       <div className="flex gap-3">
         <img
-          src={profile.profilePic[0] ?? '/images/user-default.svg'}
+          src={profile.profilePic[0] ?? 'https://cdn.discordapp.com/attachments/1314806383195197475/1319310119862931586/1.png?ex=6766278c&is=6764d60c&hm=860bb12a6262cd6f76f7b2e9d358a0f309e8eece8d5468bd40a5a03d18570087&'}
           alt="profilepicture"
           className="size-12 rounded-full border"
         />

@@ -36,7 +36,8 @@ const ExclusiveContentPanel = ({ creatorId }: { creatorId: Principal }) => {
               title={content.title}
               description={content.description}
               tier={getContentTierName(content.tier)}
-              thumbnail={content.thumbnail}
+              thumbnail={content.youtubeLink}
+              youtubeLink={content.thumbnail}
               likesCount={content.likesCount.toString()}
               commentsCount={content.commentsCount.toString()}
               createdAt={content.createdAt}
@@ -45,7 +46,7 @@ const ExclusiveContentPanel = ({ creatorId }: { creatorId: Principal }) => {
           );
         })
       ) : (
-        <>This creator no exclusive content</>
+        <>This teacher no course</>
       )}
     </div>
   );

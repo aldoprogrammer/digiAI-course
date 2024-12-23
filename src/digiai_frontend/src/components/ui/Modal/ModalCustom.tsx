@@ -61,7 +61,7 @@ const ModalCustom: React.FC<ModalProps> = ({
                 onClick={(e) => e.stopPropagation()}
                 className={cn(
                   'mx-[15px] my-4 w-full transform overflow-hidden rounded-2xl transition-all',
-                  'bg-cardBackground border border-border/60 bg-bg shadow-custom',
+                  'bg-white border border-border/60 bg-white',
                   className,
                 )}
               >

@@ -33,7 +33,7 @@ export default {
       },
       colors: {
         bg: '#FFE4E1',
-        mainAccent: '#A3D8FF',
+        mainAccent: '#A3FFA3',
         secondaryAccent: '#A1C4FD',
         thirdAccent: '#FDCB82',
         title: '#3E3D39',

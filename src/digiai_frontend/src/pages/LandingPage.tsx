@@ -10,9 +10,9 @@ const LandingPage = () => {
   return (
     <Layout fullWidth className="px-0">
       <HeroBanner />
-      <WhyNekoTip />
-      <HowItWorks />
-      <FAQ />
+      {/* <WhyNekoTip /> */}
+      {/* <HowItWorks /> */}
+      {/* <FAQ /> */}
     </Layout>
   );
 };

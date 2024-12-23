@@ -64,12 +64,12 @@ const CreatePostForm = () => {
       errors.push('Thumbnail is required');
     }
 
-    if (!selectedFiles) {
+    if (!selectedFiles || selectedFiles.length === 0) {
       errors.push('At least one content image is required');
     }
 
-    if (youtubeLink && !/^https:\/\/(www\.)?youtube\.com\/watch\?v=[\w-]+$/.test(youtubeLink)) {
-      errors.push('Invalid YouTube link');
+    if (!youtubeLink) {
+      errors.push('Youtube link is required');
     }
 
     setFormErrors(errors);
@@ -79,7 +79,9 @@ const CreatePostForm = () => {
   // Handle post creation
   const handleCreateNewPost = async () => {
     // Validate form first
-    if (!validateForm()) return alert(formErrors.map((e) => e));
+    if (!validateForm()) {
+      return alert(formErrors.join("\n")); // Display errors
+    }
 
     try {
       setLoading(true);
@@ -107,14 +109,17 @@ const CreatePostForm = () => {
       }
 
       if (actor) {
+        // Create post with the correct parameters
         const result = await actor.postContent(
           title,
           description,
           contentTier.value,
-          uploadedThumbnailUrl, // Thumbnail
+          youtubeLink, // YouTube Link (this should be passed correctly)
+          uploadedThumbnailUrl, // Thumbnail (this is the uploaded image URL)
           uploadedContentImageUrls, // Content Images
-          // youtubeLink // YouTube Link
         );
+
+        console.log('result', result);
 
         if ('ok' in result) {
           // Reset form and navigate to content page
@@ -152,8 +157,9 @@ const CreatePostForm = () => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-       {/* YouTube Link Field */}
-       <div className="mt-4">
+      
+      {/* YouTube Link Field */}
+      <div className="mt-4">
         <label className="mb-2 block font-semibold text-subtext">YouTube Video Link</label>
         <CustomInput
           type="url"
@@ -162,11 +168,12 @@ const CreatePostForm = () => {
           onChange={(e) => setYoutubeLink(e.target.value)}
         />
       </div>
+      
       <CustomTextarea
         containerClassName="mt-2 md:mt-4"
         textareaClassName="md:min-h-[100px]"
-        label="Description"
-        placeholder={'Description about your post'}
+        label="Lesson"
+        placeholder="Write your lesson here, if required"
         maxLength={1000}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
@@ -190,7 +197,7 @@ const CreatePostForm = () => {
 
       {/* Thumbnail Upload */}
       <div className="mt-4">
-        <label className="mb-2 block font-semibold text-subtext">Thumbnail</label>
+        <label className="mb-2 block font-semibold text-subtext">Cover Course</label>
         <div className="space-y-5">
           <CustomFileInput
             onChange={handleThumbnailChange}
@@ -245,8 +252,6 @@ const CreatePostForm = () => {
           </div>
         </div>
       </div>
-
-     
 
       <div className="flex w-full md:justify-end">
         <Button

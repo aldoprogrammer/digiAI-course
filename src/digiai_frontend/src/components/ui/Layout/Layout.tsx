@@ -18,7 +18,7 @@ const Layout = ({ children, className, title, fullWidth }: LayoutProps) => {
   return (
     <>
       <Helmet title={pageTitle}></Helmet>
-      <div className="h-full w-full">
+      <div className="h-full w-full bg-thirdAccent">
         <div
           className={cn(
             'relative mx-auto grid min-h-screen',
@@ -28,7 +28,7 @@ const Layout = ({ children, className, title, fullWidth }: LayoutProps) => {
           )}
         >
           {isTablet ? <MobileNavbar /> : <Navbar />}
-          <div className="mb-10 mt-6 flex w-full justify-center lg:mb-14 lg:mt-10">
+          <div className="mb-10 mt-6 flex w-full justify-center lg:mb-14 lg:mt-10 bg-thirdAccent">
             <main
               className={cn(
                 'w-full px-4',

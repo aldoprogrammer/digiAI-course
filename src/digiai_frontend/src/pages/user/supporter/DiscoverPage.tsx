@@ -35,6 +35,7 @@ const DiscoverPage = () => {
               key={content.id.toString()}
               contentId={content.id}
               title={content.title}
+              youtubeLink={content.youtubeLink}
               description={content.description}
               tier={getContentTierName(content.tier)}
               thumbnail={content.thumbnail}

@@ -61,6 +61,7 @@ const CourseManagement = () => {
               <Link key={content.id} to={`/courses/content/${content.id}`}>
                 <ContentPreview
                   title={content.title}
+                  youtubeLink={content.youtubeLink}
                   description={content.description}
                   tier={getContentTierLabel(content.tier)}
                   thumbnail={content.thumbnail}

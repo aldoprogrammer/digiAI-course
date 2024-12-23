@@ -7,6 +7,9 @@ import Text "mo:base/Text";
 import Cycles "mo:base/ExperimentalCycles";
 import Blob "mo:base/Blob";
 import Debug "mo:base/Debug";
+import Nat "mo:base/Nat";
+import Int "mo:base/Int";
+import Time "mo:base/Time";
 
 import UserService "services/UserService";
 import ContentService "services/ContentService";
@@ -113,17 +116,41 @@ actor NekoTip {
     return UserService.getCreditBalance(userBalances, msg.caller);
   };
 
-  // CONTENT ENDPOINT ======================================
-  // POST CONTENT
-  public shared (msg) func postContent(
-    title : Text,
-    description : Text,
-    tier : Types.ContentTier,
-    thumbnail : Text,
+   public shared func postContent(
+    title: Text,  // The title is passed as a parameter
+    description: Text,
+    tier: Types.ContentTier,
+    thumbnail: Text,
     youtubeLink: Text,
-    contentImages : [Text],
+    isCompleted: Bool,
+    contentImages: [Text]
   ) : async Result.Result<Types.Content, Text> {
-    return ContentService.postContent(contents, msg.caller, title, description, tier, thumbnail, contentImages, youtubeLink);
+
+    // Post the content using ContentService asynchronously
+    let postResult = await ContentService.postContent(title, description, tier, thumbnail, contentImages, youtubeLink, isCompleted);
+    
+    // Check if the content is marked as completed
+    if (isCompleted) {
+      // If the content is completed, issue a certificate
+      let userName = Principal.toText(msg.caller); // Get the caller's principal as username
+      let courseTitle = title;  // Use the content title as the course title
+      let certificateId = generateCertificateId();  // Generate a unique certificate ID
+      let dateOfIssuance = Time.now();  // Get the current time as the issuance time
+
+      // Call the issueCertificate function from CertificateService to generate the certificate
+      let certificate = await CertificateService.issueCertificate(msg.caller, userName, courseTitle, certificateId, dateOfIssuance);
+      
+      // Return the post result (and optionally the certificate, depending on your use case)
+      return Result.Ok(postResult);
+    } else {
+      // If the content is not completed, return the post result without issuing a certificate
+      return Result.Ok(postResult);
+    }
+  };
+
+  // Helper function to generate a unique certificate ID based on the current time
+  private func generateCertificateId() : Text {
+    return "CERT-" # Nat.toText(Int.abs(Time.now() / 1_000_000_000)); // Simple ID based on time
   };
 
   // GET ALL CONTENT PREVIEWS (Timeline/Feed/Discover)
