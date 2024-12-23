@@ -3,10 +3,6 @@
 *DigiAI Course* 
 An online learning platform that utilizes the latest technology, including Gemini-based AI, and allows participants to earn official certification. The project is built on *Internet Computer Protocol (ICP)*, offering a modern learning experience with blockchain integration.
 
-<p align="center">
-  <img src="https://amethyst-wrong-bobolink-547.mypinata.cloud/ipfs/QmeNwVtZTFs3aVsoqBkwrRMaQR3iBsgTE4CuRvV2rsPwVf" width="100%">
-</p>
-
 *Video Demonstration*: [https://www.loom.com/share/3510f9165fe74fce93ba5aebadcd61a0?sid=6ab70420-243e-4b0e-8d37-6a56569b0e4d](https://www.loom.com/share/3510f9165fe74fce93ba5aebadcd61a0?sid=6ab70420-243e-4b0e-8d37-6a56569b0e4d)
 
 ---
