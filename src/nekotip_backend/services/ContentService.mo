@@ -18,7 +18,9 @@ module {
     tier : Types.ContentTier,
     thumbnail : Text,
     contentImages : [Text],
+    youtubeLink : Text, // Make sure you are passing a valid Text URL
   ) : Result.Result<Types.Content, Text> {
+
     // Check for anonymous caller
     if (Principal.isAnonymous(caller)) {
       return #err("Anonymous principals cannot post content");
@@ -44,6 +46,11 @@ module {
       return #err("Maximum of 10 content images allowed");
     };
 
+    // Validate YouTube link
+    if (youtubeLink == "" or not _isValidUrl(youtubeLink)) {
+      return #err("Invalid YouTube link URL");
+    };
+
     // Validate individual content images
     for (image in contentImages.vals()) {
       if (image == "" or not _isValidUrl(image)) {
@@ -57,6 +64,7 @@ module {
       id = contentId;
       creatorId = caller;
       title = title;
+      youtubeLink = youtubeLink;
       description = description;
       tier = tier;
       thumbnail = thumbnail;
@@ -357,6 +365,7 @@ module {
       id = content.id;
       creatorId = content.creatorId;
       title = content.title;
+      youtubeLink = content.youtubeLink;
       description = content.description;
       tier = content.tier;
       thumbnail = content.thumbnail;

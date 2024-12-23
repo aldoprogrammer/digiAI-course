@@ -27,15 +27,15 @@
         "icp_ledger_canister"
       ]
     },
-    "nekotip_frontend": {
+    "digiai_frontend": {
       "dependencies": [
         "nekotip_backend"
       ],
       "source": [
-        "src/nekotip_frontend/dist"
+        "src/digiai_frontend/dist"
       ],
       "type": "assets",
-      "workspace": "nekotip_frontend"
+      "workspace": "digiai_frontend"
     }
   },
   "defaults": {
