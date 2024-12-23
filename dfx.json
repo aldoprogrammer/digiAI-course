@@ -20,8 +20,8 @@
         }
       }
     },
-    "nekotip_backend": {
-      "main": "src/nekotip_backend/main.mo",
+    "digiai_backend": {
+      "main": "src/digiai_backend/main.mo",
       "type": "motoko",
       "dependencies": [
         "icp_ledger_canister"
@@ -29,7 +29,7 @@
     },
     "digiai_frontend": {
       "dependencies": [
-        "nekotip_backend"
+        "digiai_backend"
       ],
       "source": [
         "src/digiai_frontend/dist"
